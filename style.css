@@ -1,0 +1,926 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #ffd65a, #fbb034);
+  min-height: 100vh;
+}
+
+/* PAGE SYSTEM */
+.page {
+  display: none;
+  padding: 20px;
+  padding-bottom: 100px;
+  min-height: 100vh;
+}
+
+.page.active {
+  display: block;
+}
+
+/* SPLASH */
+#splash.page.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+#splash h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+#splash p {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+#splash button {
+  padding: 15px 50px;
+  font-size: 1.2em;
+  background: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* LOGIN & REGISTER */
+#login, #register {
+  max-width: 400px;
+  margin: 50px auto;
+}
+
+#login h2, #register h2 {
+  text-align: center;
+  color: #333;
+}
+
+#login input, #register input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+}
+
+#login button, #register button {
+  width: 100%;
+  padding: 12px;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.link-text {
+  text-align: center;
+  margin-top: 15px;
+  cursor: pointer;
+  color: #555;
+}
+
+.link-text span {
+  color: #fbb034;
+  font-weight: bold;
+}
+
+/* NAVBAR */
+nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  display: flex;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  z-index: 1000;
+}
+
+nav button {
+  flex: 1;
+  border: none;
+  background: none;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #999;
+  transition: color 0.3s;
+}
+
+nav button .emoji {
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+nav button .label {
+  font-size: 11px;
+}
+
+nav button.active {
+  color: #fbb034;
+  font-weight: bold;
+}
+
+/* HOME */
+.home-header h2 {
+  margin: 0;
+  color: #333;
+}
+
+.search {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 12px;
+  border: none;
+  margin-top: 10px;
+  font-size: 1em;
+}
+
+.banner {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 15px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.banner h3 {
+  margin: 0 0 5px 0;
+  color: #333;
+}
+
+.banner p {
+  margin: 0;
+  color: #666;
+}
+
+.title {
+  margin-top: 25px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.kategori {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.kategori::-webkit-scrollbar {
+  height: 0;
+}
+
+.kategori-item {
+  background: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* PRODUK */
+.produk-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.produk-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.produk-card:hover {
+  transform: translateY(-5px);
+}
+
+.produk-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.produk-card h4 {
+  margin: 10px 0 5px 0;
+  color: #333;
+}
+
+.produk-card p {
+  color: #f57c00;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.produk-card button {
+  background: #fbb034;
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 8px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* DETAIL */
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.back {
+  background: #fff;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-img {
+  width: 100%;
+  border-radius: 20px;
+  margin: 15px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.detail-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.detail-box h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.harga {
+  color: #f57c00;
+  font-weight: bold;
+  font-size: 1.3em;
+  margin: 10px 0;
+}
+
+.deskripsi {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  margin: 15px 0;
+}
+
+/* PETANI INFO */
+.petani {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+
+.petani img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.petani div {
+  flex: 1;
+}
+
+.petani div strong {
+  display: block;
+  color: #333;
+}
+
+.petani div p {
+  margin: 3px 0 0 0;
+  font-size: 12px;
+  color: #777;
+}
+
+.petani button {
+  background: #fbb034;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* JUMLAH */
+.jumlah {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+  margin: 25px 0;
+}
+
+.jumlah button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #fbb034;
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+}
+
+.jumlah span {
+  font-size: 1.5em;
+  font-weight: bold;
+  min-width: 40px;
+  text-align: center;
+}
+
+.btn-beli {
+  width: 100%;
+  padding: 14px;
+  background: #333;
+  color: #fff;
+  border-radius: 12px;
+  border: none;
+  font-size: 1.1em;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* KERANJANG */
+.keranjang-content {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* PESANAN */
+.pesanan-list {
+  margin-bottom: 20px;
+}
+
+.pesanan-card {
+  display: flex;
+  background: #fff;
+  padding: 12px;
+  border-radius: 15px;
+  gap: 12px;
+  margin-top: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.pesanan-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.pesanan-info {
+  flex: 1;
+}
+
+.pesanan-info h4 {
+  margin: 0 0 5px 0;
+  color: #333;
+}
+
+.pesanan-info p {
+  margin: 3px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.pesanan-info strong {
+  color: #f57c00;
+  font-size: 1.1em;
+}
+
+.status-inline {
+  margin-top: 8px;
+}
+
+.status {
+  margin-top: 15px;
+}
+
+.status p {
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.badge.proses {
+  background: #ff9800;
+}
+
+.badge.dikirim {
+  background: #2196f3;
+}
+
+.badge.selesai {
+  background: #4caf50;
+}
+
+.alamat, .total {
+  background: #fff;
+  padding: 15px;
+  border-radius: 15px;
+  margin-top: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.alamat h4 {
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.alamat p {
+  margin: 0;
+  color: #666;
+}
+
+.total p {
+  margin: 0 0 5px 0;
+  color: #666;
+}
+
+.total h3 {
+  margin: 0;
+  color: #f57c00;
+}
+
+.btn-bayar {
+  width: 100%;
+  padding: 14px;
+  background: #2e7d32;
+  color: #fff;
+  border-radius: 15px;
+  border: none;
+  margin-top: 20px;
+  font-size: 1.1em;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* CHAT LIST */
+.chat-list-content {
+  margin-bottom: 20px;
+}
+
+.chat-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 12px;
+  border-radius: 15px;
+  margin-top: 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.chat-item:hover {
+  transform: translateX(5px);
+}
+
+.chat-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.chat-info {
+  flex: 1;
+}
+
+.chat-info strong {
+  display: block;
+  color: #333;
+  margin-bottom: 3px;
+}
+
+.chat-info p {
+  font-size: 13px;
+  color: #777;
+  margin: 0;
+}
+
+.chat-time {
+  font-size: 12px;
+  color: #999;
+}
+
+/* CHAT DETAIL */
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  padding: 12px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.chat-header button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.chat-header img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.chat-header strong {
+  flex: 1;
+  color: #333;
+}
+
+.call {
+  background: #2e7d32 !important;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-body {
+  background: #f5f5f5;
+  min-height: 60vh;
+  max-height: 60vh;
+  padding: 15px;
+  overflow-y: auto;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.bubble {
+  max-width: 75%;
+  padding: 12px 15px;
+  border-radius: 18px;
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.kiri {
+  background: #fff;
+  margin-right: auto;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.kanan {
+  background: #dcf8c6;
+  margin-left: auto;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.chat-input {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.chat-input input {
+  flex: 1;
+  border-radius: 25px;
+  padding: 12px 18px;
+  border: none;
+  background: #fff;
+  font-size: 1em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.chat-input button {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: none;
+  background: #fbb034;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* PROFIL */
+.profil-content {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.profil-header {
+  text-align: center;
+  background: #fff;
+  padding: 30px 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.profil-foto {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 4px solid #fbb034;
+}
+
+.profil-header h3 {
+  margin: 10px 0 5px 0;
+  color: #333;
+}
+
+.profil-header p {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+}
+
+.profil-menu {
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.menu-item {
+  padding: 18px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item:hover {
+  background: #f9f9f9;
+}
+
+.menu-item span:first-child {
+  color: #333;
+  font-size: 15px;
+}
+
+.menu-item span:last-child {
+  color: #999;
+  font-size: 18px;
+}
+
+.btn-logout {
+  width: 100%;
+  padding: 14px;
+  background: #d32f2f;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  margin-top: 20px;
+  font-size: 1em;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* EDIT PROFIL */
+.edit-profil-content {
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.profil-foto-edit {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.profil-foto-edit img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 4px solid #fbb034;
+}
+
+.btn-ganti-foto {
+  background: #fbb034;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 1em;
+  font-family: inherit;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.btn-simpan {
+  width: 100%;
+  padding: 14px;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1em;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* PETANI DASHBOARD */
+.petani-info {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.petani-info strong {
+  display: block;
+  font-size: 1.3em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.petani-info p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.petani-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.petani-menu button {
+  background: #fff;
+  border: none;
+  padding: 18px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1em;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-weight: bold;
+}
+
+.logout {
+  width: 100%;
+  padding: 14px;
+  background: #d32f2f;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+/* --- TAMBAHAN STYLE CHAT --- */
+.chat-body {
+  flex: 1;
+  background: #f5f5f5;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bubble {
+  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 15px;
+  font-size: 0.95em;
+  line-height: 1.4;
+  position: relative;
+}
+
+/* Pesan Orang Lain (Kiri) */
+.bubble.kiri {
+  align-self: flex-start;
+  background: #fff;
+  color: #333;
+  border-bottom-left-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Pesan Saya (Kanan) */
+.bubble.kanan {
+  align-self: flex-end;
+  background: #4CAF50; /* Hijau Petani */
+  color: white;
+  border-bottom-right-radius: 2px;
+  box-shadow: 0 2px 5px rgba(76, 175, 80, 0.3);
+}
+
+.chat-input {
+  display: flex;
+  padding: 10px;
+  background: white;
+  border-top: 1px solid #ddd;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  margin-right: 10px;
+  outline: none;
+}
+
+.chat-input button {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2em;
+}

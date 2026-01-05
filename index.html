@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buah PerKilo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section id="splash" class="page active">
+  <h1>🍎 Buah PerKilo</h1>
+  <p>Dari petani langsung ke pembeli</p>
+  <button onclick="go('login')">Mulai</button>
+</section>
+
+<section id="login" class="page">
+  <h2>Login</h2>
+
+  <input placeholder="Email">
+  <input type="password" placeholder="Password">
+
+  <button onclick="loginPembeli()">Masuk sebagai Pembeli</button>
+  <button onclick="loginPenjual()" class="btn-outline">
+    Masuk sebagai Penjual/Petani
+  </button>
+
+  <p onclick="go('register')">Daftar</p>
+</section>
+
+<section id="register" class="page">
+  <h2>Daftar</h2>
+  <input placeholder="Nama">
+  <input placeholder="Email">
+  <input type="password" placeholder="Password">
+  <button onclick="go('login')">Daftar</button>
+</section>
+
+<section id="home" class="page">
+  <div class="home-header">
+    <h2>Buah PerKilo</h2>
+    <input class="search" placeholder="Cari buah segar...">
+  </div>
+
+  <div class="banner">
+    <h3>Buah Segar Langsung Dari Petani</h3>
+    <p>Harga murah & kualitas terjamin</p>
+  </div>
+
+  <h3 class="title">Kategori</h3>
+  <div class="kategori">
+    <div class="kategori-item">🍎 Apel</div>
+    <div class="kategori-item">🍌 Pisang</div>
+    <div class="kategori-item">🍊 Jeruk</div>
+    <div class="kategori-item">🍉 Semangka</div>
+  </div>
+
+  <h3 class="title">Produk Populer</h3>
+  <div class="produk-grid">
+    <div class="produk-card" onclick="go('detail')">
+      <img src="https://via.placeholder.com/150" alt="Apel">
+      <h4>Apel Merah</h4>
+      <p>Rp 25.000 / kg</p>
+      <button>Beli</button>
+    </div>
+
+    <div class="produk-card">
+      <img src="https://via.placeholder.com/150" alt="Pisang">
+      <h4>Pisang Cavendish</h4>
+      <p>Rp 15.000 / kg</p>
+      <button>Beli</button>
+    </div>
+
+    <div class="produk-card">
+      <img src="https://via.placeholder.com/150" alt="Jeruk">
+      <h4>Jeruk Medan</h4>
+      <p>Rp 20.000 / kg</p>
+      <button>Beli</button>
+    </div>
+  </div>
+
+  <nav>
+    <button onclick="go('home')" data-role="pembeli">🏠</button>
+    <button onclick="go('pesanan')" data-role="pembeli">📦</button>
+    <button onclick="go('chat-list')" data-role="pembeli">💬</button>
+    <button onclick="go('profil')" data-role="pembeli">👤</button>
+  </nav>
+
+</section>
+
+<section id="detail" class="page">
+  <div class="detail-header">
+    <button class="back" onclick="go('home')">←</button>
+    <h2>Detail Buah</h2>
+  </div>
+
+  <img class="detail-img" src="https://via.placeholder.com/300" alt="Detail Produk">
+
+  <div class="detail-box">
+    <h3>Apel Merah Segar</h3>
+    <p class="harga">Rp 25.000 / kg</p>
+    <p class="deskripsi">
+      Apel merah segar langsung dari petani lokal. Dipanen setiap hari,
+      kualitas terjaga dan siap dikirim.
+    </p>
+
+    <div class="jumlah">
+      <button onclick="kurang()">-</button>
+      <span id="qty">1</span>
+      <button onclick="tambah()">+</button>
+    </div>
+
+    <button class="btn-beli" onclick="tambahKeranjang()">
+      Tambah ke Keranjang
+    </button>
+  </div>
+</section>
+
+<section id="keranjang" class="page">
+  <h2>Keranjang</h2>
+
+  <div id="keranjangList" class="keranjang-content"></div>
+
+  <div class="total">
+    <p>Total Pembayaran</p>
+    <h3 id="keranjangTotal">Rp 0</h3>
+  </div>
+
+  <button class="btn-bayar" onclick="checkout()">
+    Checkout
+  </button>
+
+  <nav>
+    <button onclick="go('home')">🏠</button>
+    <button onclick="go('pesanan')">📦</button>
+    <button onclick="go('chat-list')">💬</button>
+    <button onclick="go('profil')">👤</button>
+  </nav>
+</section>
+
+<section id="pesanan" class="page">
+  <h2>Pesanan Saya</h2>
+  
+  <div id="pesananList"></div>
+  
+  <div class="status">
+    <p>Status Pesanan:</p>
+    <span class="badge proses">Diproses</span>
+  </div>
+  
+  <div class="alamat">
+    <h4>Alamat Pengiriman</h4>
+    <p>Jl. Mawar No. 12, Malang</p>
+  </div>
+  
+  <div class="total">
+    <p>Total Pembayaran</p>
+    <h3>Rp 0</h3>
+  </div>
+  
+  <button class="btn-bayar" onclick="bayar()">Bayar Sekarang</button>
+  
+  <nav>
+    <button onclick="go('home')">🏠</button>
+    <button onclick="go('pesanan')">📦</button>
+    <button onclick="go('chat-list')">💬</button>
+    <button onclick="go('profil')">👤</button>
+  </nav>
+</section>
+
+<section id="chat-list" class="page">
+  <h2>Chat</h2>
+
+  <div class="chat-item" onclick="go('chat-detail')">
+    <img src="https://via.placeholder.com/50" alt="Avatar">
+    <div class="chat-info">
+      <strong>Petani Andi</strong>
+      <p>Buah siap dikirim hari ini</p>
+    </div>
+    <span class="chat-time">09:30</span>
+  </div>
+
+  <div class="chat-item">
+    <img src="https://via.placeholder.com/50" alt="Avatar">
+    <div class="chat-info">
+      <strong>Petani Budi</strong>
+      <p>Stok masih tersedia</p>
+    </div>
+    <span class="chat-time">Kemarin</span>
+  </div>
+
+  <nav>
+    <button onclick="go('home')">🏠</button>
+    <button onclick="go('pesanan')">📦</button>
+    <button onclick="go('chat-list')">💬</button>
+    <button onclick="go('profil')">👤</button>
+  </nav>
+</section>
+
+<section id="chat-detail" class="page">
+  <div class="chat-header">
+    <button onclick="go('chat-list')">←</button>
+    <img src="https://via.placeholder.com/40" alt="Avatar">
+    <strong>Petani Andi</strong>
+    <button class="call" onclick="alert('Panggilan dimulai')">📞</button>
+  </div>
+  
+  <div class="chat-body"></div>
+  
+  <div class="chat-input">
+    <input id="pesan" placeholder="Ketik pesan...">
+    <button onclick="kirim()">➤</button>
+  </div>
+</section>
+
+<section id="profil" class="page">
+  <div class="profil-content">
+
+    <div class="profil-header">
+      <img
+        src="https://via.placeholder.com/100"
+        alt="Foto Profil"
+        class="profil-foto"
+        id="fotoProfil"
+      >
+      <h3 id="namaProfil">Maya Fatma</h3>
+      <p id="emailProfil">maya@email.com</p>
+    </div>
+
+    <div class="profil-menu">
+      <div class="menu-item" onclick="go('edit-profil')">
+        <span>✏️ Edit Profil</span>
+        <span>›</span>
+      </div>
+
+      <div class="menu-item" onclick="go('alamat')">
+        <span>📍 Alamat Pengiriman</span>
+        <span>›</span>
+      </div>
+
+      <div class="menu-item" onclick="go('riwayat')">
+        <span>📦 Riwayat Pesanan</span>
+        <span>›</span>
+      </div>
+
+      <div class="menu-item" onclick="alert('Fitur belum tersedia')">
+        <span>⚙️ Pengaturan</span>
+        <span>›</span>
+      </div>
+    </div>
+
+    <button class="btn-logout" onclick="logout()">Logout</button>
+
+  </div>
+
+  <nav>
+    <button onclick="go('home')">🏠</button>
+    <button onclick="go('pesanan')">📦</button>
+    <button onclick="go('chat-list')">💬</button>
+    <button onclick="go('profil')">👤</button>
+  </nav>
+</section>
+
+<section id="edit-profil" class="page">
+  <div class="edit-profil-content">
+
+    <h2>Edit Profil</h2>
+
+    <div class="profil-foto-edit">
+      <img src="https://via.placeholder.com/100" alt="Foto Profil">
+      <button class="btn-ganti-foto">Ganti Foto</button>
+    </div>
+
+    <div class="form-group">
+      <label>Nama Lengkap</label>
+      <input id="inputNama" value="Maya Fatma">
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input id="inputEmail" value="maya@email.com">
+    </div>
+
+    <button class="btn-simpan" onclick="simpanProfil()">
+      Simpan Perubahan
+    </button>
+
+  </div>
+</section>
+
+<section id="petani-dashboard" class="page" data-role="penjual">
+  <h2>Dashboard Petani</h2>
+
+  <div class="petani-info">
+    <strong id="namaPetani">Petani Andi</strong>
+    <p>Status Toko: <span style="color:green; font-weight:bold;">Buka</span></p>
+  </div>
+
+  <h3 style="margin-top: 20px; border-bottom: 2px solid #eee; padding-bottom: 10px; display:flex; justify-content:space-between;">
+    Pesanan Masuk 
+    <span id="pesananMasukCount" style="background:#ff9800; color:white; padding:2px 8px; border-radius:50%; font-size:0.8em;">0</span>
+  </h3>
+
+  <div id="petaniPesananList" class="petani-pesanan" style="min-height: 100px;"></div>
+
+  <div class="petani-menu" style="margin-top: 30px;">
+    <button onclick="go('petani-dashboard')">🔄 Refresh</button>
+    <button onclick="go('petani-produk')">📦 Produk Saya</button>
+    <button onclick="go('petani-chat-list')">💬 Chat Pembeli</button>
+    <button onclick="go('petani-tambah')">➕ Tambah Produk</button>
+  </div>
+
+  <button onclick="logout()" class="logout">Logout</button>
+</section>
+
+<section id="petani-produk" class="page" data-role="penjual">
+  
+  <div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <button onclick="go('petani-dashboard')" style="background: none; border: none; font-size: 24px; cursor: pointer; padding: 0; margin-right: 15px;">←</button>
+    <h2 style="margin: 0;">📦 Produk Saya</h2>
+  </div>
+
+  <p style="color:#666; margin-bottom:15px;">Klik produk untuk mengedit stok atau harga.</p>
+
+  <div id="listProdukPetani" class="produk-grid" style="grid-template-columns: 1fr 1fr; display: grid; gap: 10px;"></div>
+
+  <div onclick="tambahBaru()" style="position: fixed; bottom: 80px; right: 20px; background: #4CAF50; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer; z-index: 999;">+</div>
+</section>
+
+<section id="petani-tambah" class="page" data-role="penjual">
+  <h2 id="judulFormProduk">Tambah Produk</h2>
+  <input type="hidden" id="editId">
+
+  <div class="form-group" style="margin-bottom: 15px;">
+    <label style="display:block; margin-bottom:5px; font-weight:bold;">Nama Buah</label>
+    <input id="inputNamaProduk" placeholder="Contoh: Apel Malang" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+  </div>
+
+  <div class="form-group" style="margin-bottom: 15px;">
+    <label style="display:block; margin-bottom:5px; font-weight:bold;">Harga per Kg (Rp)</label>
+    <input id="inputHargaProduk" type="number" placeholder="Contoh: 25000" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+  </div>
+
+  <div class="form-group" style="margin-bottom: 15px;">
+    <label style="display:block; margin-bottom:5px; font-weight:bold;">Stok Tersedia (Kg)</label>
+    <input id="inputStokProduk" type="number" placeholder="Contoh: 100" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+  </div>
+
+  <div class="form-group" style="margin-bottom: 15px;">
+    <label style="display:block; margin-bottom:5px; font-weight:bold;">Gambar (URL)</label>
+    <input id="inputImgProduk" placeholder="https://..." value="https://via.placeholder.com/150" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+    <small style="color:#888;">*Biarkan default jika tidak ada gambar</small>
+  </div>
+
+  <div class="btn-group" style="margin-top:30px;">
+    <button onclick="simpanProduk()" class="btn-simpan" style="background:#4CAF50; color:white; width:100%; padding:12px; border:none; border-radius:8px; font-size: 16px; font-weight: bold; cursor: pointer;">✅ Konfirmasi Simpan</button>
+    <button onclick="hapusProduk()" id="btnHapus" style="background:#ff5252; color:white; width:100%; padding:12px; border:none; border-radius:8px; margin-top:10px; display:none; cursor: pointer;">🗑️ Hapus Produk</button>
+    <button onclick="go('petani-produk')" style="background:transparent; color:#666; width:100%; margin-top:10px; border:none; cursor: pointer;">Batal</button>
+  </div>
+</section>
+
+<section id="petani-chat-list" class="page" data-role="penjual">
+  
+  <div style="display: flex; align-items: center; margin-bottom: 20px;">
+    <button onclick="go('petani-dashboard')" style="background: none; border: none; font-size: 24px; cursor: pointer; padding: 0; margin-right: 15px;">←</button>
+    <h2 style="margin: 0;">💬 Chat Pembeli</h2>
+  </div>
+
+  <div class="chat-item" onclick="go('petani-chat-detail')" style="cursor:pointer; background:white; padding:15px; border-radius:12px; display:flex; gap:15px; align-items:center; margin-bottom:10px; box-shadow:0 2px 5px rgba(0,0,0,0.05);">
+    <img src="https://via.placeholder.com/50" alt="Avatar" style="border-radius:50%;">
+    <div class="chat-info" style="flex:1;">
+      <strong style="display:block; font-size:1.1em;">Maya Fatma</strong>
+      <p style="margin:0; color:#666; font-size:0.9em;">Apakah bisa dikirim hari ini?</p>
+    </div>
+    <span class="chat-time" style="font-size:0.8em; color:#999;">10:12</span>
+  </div>
+
+  <div class="chat-item" style="opacity:0.6; background:white; padding:15px; border-radius:12px; display:flex; gap:15px; align-items:center; box-shadow:0 2px 5px rgba(0,0,0,0.05);">
+    <img src="https://via.placeholder.com/50" alt="Avatar" style="border-radius:50%;">
+    <div class="chat-info" style="flex:1;">
+      <strong style="display:block; font-size:1.1em;">Budi Santoso</strong>
+      <p style="margin:0; color:#666; font-size:0.9em;">Terima kasih, Pak</p>
+    </div>
+    <span class="chat-time" style="font-size:0.8em; color:#999;">Kemarin</span>
+  </div>
+</section>
+
+<section id="petani-chat-detail" class="page" data-role="penjual" style="flex-direction:column; height:100vh; padding:0; padding-bottom:0;">
+  
+  <div class="chat-header" style="padding:15px; background:white; border-bottom:1px solid #eee; display:flex; align-items:center; gap:15px;">
+    <button onclick="go('petani-chat-list')" style="background:none; border:none; font-size:1.5em; cursor:pointer;">←</button>
+    <img src="https://via.placeholder.com/40" alt="Avatar" style="border-radius:50%;">
+    <strong style="flex:1;">Maya Fatma</strong>
+    <button class="call" onclick="alert('Fitur telepon belum tersedia')" style="background:#eee; border:none; width:40px; height:40px; border-radius:50%; cursor:pointer;">📞</button>
+  </div>
+  
+  <div class="chat-body" id="petaniChatBody">
+    </div>
+  
+  <div class="chat-input">
+    <input id="inputPesanPetani" placeholder="Balas pesan...">
+    <button onclick="kirimPetani()">➤</button>
+  </div>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
